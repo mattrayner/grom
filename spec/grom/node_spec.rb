@@ -47,6 +47,14 @@ describe Grom::Node do
           expect{ subject.method(:something_random) }.to raise_error(NameError, 'undefined method `something_random\' for class `Grom::Node\'')
           expect{ subject.something_random }.to raise_error(NoMethodError)
         end
+
+        it 'responds to #literals_hash and returns a hash of the literal attributes' do
+          expected = { type: 'Person',
+                       forename: 'Jane',
+                       surname: 'Smith' }
+          expect(subject).to respond_to(:literals_hash)
+          expect(subject.literals_hash).to eq(expected)
+        end
       end
     end
 
